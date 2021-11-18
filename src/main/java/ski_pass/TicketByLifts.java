@@ -8,16 +8,14 @@ import lombok.Getter;
 import java.time.LocalDate;
 import java.util.Date;
 
-@AllArgsConstructor @Getter
+@Getter
 public class TicketByLifts extends SkiPass {
-    private Time time;
-    private Lifts liftsAmount;
-    private int liftsLeft;
+    private final Lifts liftsAmount;
 
-    public TicketByLifts(Time time, Lifts lifts) {
+    TicketByLifts(Time time, Lifts lifts) {
         this.time = time;
         this.liftsAmount = lifts;
-        liftsLeft = liftsAmount.getAmount();
+        usesLeft = liftsAmount.getAmount();
     }
 
     @Override
@@ -25,6 +23,6 @@ public class TicketByLifts extends SkiPass {
         if (!isDateValid()){
             setUsesLeft(0);
         }
-        liftsLeft--;
+        usesLeft--;
     }
 }

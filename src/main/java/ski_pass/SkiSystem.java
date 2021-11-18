@@ -1,17 +1,18 @@
-package system;
+package ski_pass;
 
 import enums.Days;
 import enums.Lifts;
 import enums.Seasons;
 import enums.Time;
-import ski_pass.SkiPass;
-import ski_pass.TicketByDays;
-import ski_pass.TicketByLifts;
-import ski_pass.TicketBySeason;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
 import java.util.ArrayList;
 import java.util.List;
 
+
+@Getter @Setter @ToString
 public class SkiSystem {
     public static SkiSystem skiSystem;
     private List<SkiPass> registeredCards = new ArrayList<>();

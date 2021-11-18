@@ -8,24 +8,16 @@ import java.time.Month;
 import java.util.Date;
 
 public class TicketBySeason extends SkiPass {
-    private Time time;
     private Seasons season;
-    private Date dateOfPurchase;
 
-    public TicketBySeason(Seasons season) {
+    TicketBySeason(Seasons season) {
         time = Time.WEEKEND;
         this.season = season;
-        dateOfPurchase = new Date();
     }
+
 
     @Override
-    public void use() {
-        if (!isDateValid() || !isSeasonValid()) {
-            setUsesLeft(0);
-        }
-    }
-
-    private boolean isSeasonValid() {
+    public boolean isValid() {
         LocalDate today = LocalDate.now();
         return (season == Seasons.WINTER && (today.getMonth() == Month.DECEMBER ||
                 today.getMonth() == Month.JANUARY || today.getMonth() == Month.FEBRUARY)) ||
@@ -35,5 +27,12 @@ public class TicketBySeason extends SkiPass {
                         today.getMonth() == Month.JULY || today.getMonth() == Month.AUGUST)) ||
                 (season == Seasons.AUTUMN && (today.getMonth() == Month.SEPTEMBER ||
                         today.getMonth() == Month.OCTOBER || today.getMonth() == Month.NOVEMBER));
+    }
+
+    @Override
+    public void use() {
+        if (!isDateValid() || !isValid()) {
+            setUsesLeft(0);
+        }
     }
 }

@@ -11,13 +11,12 @@ import java.time.temporal.ChronoUnit;
 @Getter
 public class TicketByDays extends SkiPass {
     private final Days daysAmount;
-    private int daysLeft;
     private LocalDate lastDayVisited;
 
-    public TicketByDays(Time time, Days days) {
+    TicketByDays(Time time, Days days) {
         this.time = time;
         this.daysAmount = days;
-        daysLeft = daysAmount.getAmount();
+        usesLeft = daysAmount.getAmount();
         lastDayVisited = null;
     }
 
@@ -29,7 +28,7 @@ public class TicketByDays extends SkiPass {
         if (lastDayVisited == null) {
             lastDayVisited = LocalDate.now();
         } else if (ChronoUnit.DAYS.between(lastDayVisited, LocalDate.now()) > 0) {
-            daysLeft--;
+            usesLeft--;
         }
     }
 }
