@@ -1,17 +1,31 @@
 package ski_pass;
 
+import enums.Time;
 import id_generator.IdGenerator;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.time.DayOfWeek;
+import java.time.LocalDate;
+import java.util.Date;
+
 @Setter @Getter @ToString
 public abstract class SkiPass {
     private final int id = IdGenerator.createId();
     private int usesLeft;
+    protected Time time;
     public abstract void use();
 
     public boolean isValid() {
         return usesLeft > 0;
+    }
+
+    public boolean isDateValid() {
+        DayOfWeek today = LocalDate.now().getDayOfWeek();
+        if (time == Time.WEEKEND && (today == DayOfWeek.SATURDAY || today == DayOfWeek.SUNDAY)) {
+            return true;
+        }
+        return time != Time.WEEKEND && !(today == DayOfWeek.SATURDAY) && !(today == DayOfWeek.SUNDAY);
     }
 }
