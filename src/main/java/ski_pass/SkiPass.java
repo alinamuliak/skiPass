@@ -8,7 +8,6 @@ import lombok.ToString;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
-import java.util.Date;
 
 @Setter @Getter @ToString
 public abstract class SkiPass {
