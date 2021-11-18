@@ -1,4 +1,4 @@
-package idGenerator;
+package id_generator;
 
 public class IdGenerator {
         static int id;
