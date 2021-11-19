@@ -14,6 +14,9 @@ public class TicketByDays extends SkiPass {
     private LocalDate lastDayVisited;
 
     TicketByDays(Time time, Days days) {
+        if (days.getAmount() > 2) {
+            days = Days.TWO_DAYS;
+        }
         this.time = time;
         this.daysAmount = days;
         usesLeft = daysAmount.getAmount();
